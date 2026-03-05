@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        button, a { cursor: pointer; }
+
+        @font-face {
+            font-family: 'xpfont';
+            src: url('./xpfont.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            font-family: 'xpfont';
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            color: var(--black);
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;    
+            outline: none;
+            }
+            *::-webkit-scrollbar {
+                display: none;
+            }
+
+        :root {
+            --none: #000000;
+            --black: #000000;
+            --white: #ffffff;
+            --whiteblur: #3d549e40;
+            --whitefifty: rgba(255, 255, 255, 0.2);
+            --whiteseventy: rgba(255, 255, 255, 0.8);
+            --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --maxbord: 20px;
+            --okbord: 15px;
+            --minbord: 7.5px;
+            --button-of-panel: rgba(255, 255, 255, 0.9);
+            --blackest-gad: rgb(36, 36, 36);
+            --gdone: #C6A0FF; --gdtwo: #fff4a0; --gdthree: #a0ffb8;
+            --other-white: #EFF4F9;
+            --invert: none;
+            --accent-color: #0078D4;
+            --grey: rgb(222, 222, 222);
+            --window-main: rgb(255, 255, 255);
+            --greyborder: #858585;
+        }
+
+        body {
+            color: var(--black);
+            display: flex;
+            flex-direction: column;
+            font-family: var(--font);
+            height: 100vh;
+        }
+
+        header {
+            top: 0;
+            position: fixed;
+            width: 100%;
+            height: 75px;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            background: 0;
+            border-bottom: 1px solid #CAC6B5;
+
+            .buttons {
+                height: 50px;
+                display: flex;
+            }
+
+            & button {
+                display: flex; align-items: center;
+                gap: 10px; background: 0; border: 1px solid #ffffff00;
+                border-radius: 5px; height: 100%; padding-left: 10px; padding-right: 10px;
+                & img { width: 25px; height: 25px; }
+
+                &:hover {
+                    border: 1px solid #CAC6B5;
+                    background: linear-gradient(to bottom, #F8F5E3, #EBE8D6);
+                }
+            }
+
+            & .secondheader {
+                width: var(100% - 10px);
+                margin: 5px;
+                padding: 5px;
+                box-sizing: border-box;
+                background: #ACA899;
+                color: white
+            }
+        }
+
+        .main {
+            background: white;
+            height: calc(100vh - 75px);
+            width: 100%;
+            overflow-y: hidden;
+            position: fixed;
+            bottom: 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .mainmain {
+            background: var(--window-main);
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: left;
+            box-sizing: border-box;
+
+            & .mainheader {
+                display: flex;
+                flex-direction: column;
+                & span { font-weight: 600; height: 32px; font-size: 35px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; align-items: center; }
+                & .fr { background: white; color: black; }
+                & .sc { background: #000000; color: #0084ea; box-sizing: border-box; padding-left: 50px; }
+            }
+        }
+
+        hr { border: 1px solid var(--grey); }
+
+        .headbt button {
+            padding: 4px 8px;
+            border-radius: 5px;
+            background: var(--window-main);
+            color: var(--black);
+            border: 0;
+        }
+
+        .mainmain textarea {
+            font-size: 15px;
+        }
+
+        .chats {
+            width: 250px;
+            background: white;
+            box-sizing: border-box;
+            height: 100%;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            border-right: 10px solid #ECE9D8;
+
+            & .emailhead {
+                background: #ECE9D8;
+                border: 1px solid #ACA899;
+                box-sizing: border-box;
+                padding: 5px;
+            }
+            & .email {
+                display: flex;
+                gap: 5px;
+                box-sizing: border-box;
+                padding: 5px;
+                & span { color: #969696; }
+
+                &:hover { background: #ECE9D8; }
+            }
+        }
+        .textofmail {
+            flex: 1;
+            resize: none;
+            border: 1px solid #ACA899;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body data-theme="white">
+    <header>
+        <div class="buttons">
+            <button onclick="openother('index.html')"><img src="emails.svg" alt="back"> Весь мусор</button>
+            <button><img src="send email.svg" alt="back"> Писанина</button>
+            <button onclick="openother('контакты.html')"><img src="adress.svg" alt="back"> вввшки</button>
+        </div>
+        <div class="secondheader">
+            Давайте еще напишем Инлук Алиэкспресс
+        </div>
+    </header>
+
+    <div class="main">
+        <div class="chats">
+            <div class="emailhead">
+                <p>Кто пишет</p>
+            </div>
+            <span onclick="openmail(1)" class="email">
+                <span>></span>
+                <p>Мокрософт</p>
+            </span>
+            <span onclick="openmail(2)" class="email">
+                <span>></span>
+                <p>Спамчик</p>
+            </span>
+            <span onclick="openmail(3)" class="email">
+                <span>></span>
+                <p>Офис</p>
+            </span>
+            <span onclick="openmail(4)" class="email">
+                <span>></span>
+                <p>ЬЫТ Нетворк</p>
+            </span>
+        </div>
+        <div id="main" class="mainmain">
+            <div class="mainheader">
+                <span class="fr">ЬЫТ Инлук</span>
+                <span class="sc">Алиэкспресс</span>
+            </div>
+            <textarea id="textofmail" class="textofmail">
+От: _____@ьыт.сом
+Кому: _____@ьыт.сом
+
+____________________
+            </textarea>
+        </div>
+
+    </div>
+
+    <script>
+        mail = document.getElementById("textofmail");
+
+        const texts = {
+            1: 'От: мокрософт@ьыт.сом\nКому: '+localStorage.getItem('nameyit')+'@ьыт.сом\n \nчел, хочу сказать тебе спасибо, за скачку этого дерьма. А еще спасибо за регистрацию в экосистеме ЬЫТ! Давай, бывай',
+            2: 'От: спамар@progressmail.сом\nКому: '+localStorage.getItem('nameyit')+'@ьыт.сом\n \nпривет! Я не в коем случае не отсылка на Progressbar95! И это спам! Хорошего дня!',
+            3: 'От: мокрософт_суппорт@ьыт.сом\nКому: '+localStorage.getItem('nameyit')+'@ьыт.сом\n \nхочу вам сообщить грустную новость, офис не поддерживается на ХЗ. Кого ебет чужое горе.',
+            4: 'От: ьыт.сом\nКому: '+localStorage.getItem('nameyit')+'@ьыт.сом\n \n'+localStorage.getItem('nameyit')+', добро пожаловать в ьыт! общайтесь, постите и просто веселитесь!'
+        };
+        mail.value = texts[1];
+        
+        function hideAll() {
+            document.getElementById('main').style.display = 'none';
+        };
+
+        function showMain() {
+            hideAll();
+            document.getElementById('main').style.display = 'flex';
+        };
+
+        function openother(file) {
+            location.href = file;
+        };
+
+        function openmail(mailnum) {
+            mail.value = texts[mailnum];
+        };
+
+        showMain();
+
+        if (!localStorage.getItem('nameyit')) location.href = "зарегайся.html"
+    </script>
+</body>
+</html>
