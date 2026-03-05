@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЬЫТ</title>
+    <style>
+        @font-face {
+            font-family: 'xpfont';
+            src: url('./xpfont.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        * { padding: 0; margin: 0; }
+        * {
+            font-family: 'xpfont';
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            color: var(--black);
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;    
+            outline: none;
+            }
+            *::-webkit-scrollbar {
+                display: none;
+            }
+        body {
+            height: 100vh;
+            background: linear-gradient(to bottom, #CEDAF0, #FDFDFD);
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            padding: 15px;
+            overflow-y: hidden;
+        }
+
+        input { 
+            width: 100%; 
+            height: 25px; 
+            background: #E6ECF7; 
+            border: 1.25px solid #5C6F94; 
+            border-radius: 0; 
+            box-sizing: border-box; 
+            padding-left: 5px; 
+            padding-right: 5px; 
+        }
+        textarea { 
+            width: 100%; 
+            resize: vertical;
+            background: #E6ECF7; 
+            border: 1.25px solid #5C6F94; 
+            border-radius: 0; 
+            box-sizing: border-box; 
+            padding: 7px; 
+        }
+        button {
+            padding-left: 15px;
+            padding-right: 15px;
+            height: 25px;
+            border: 1.25px solid #5C6F94;
+            border-radius: 0; box-sizing: border-box;
+            display: flex; justify-content: center; align-items: center;
+            background: linear-gradient(to bottom, white 0%, white 50%, #D9E2F3 51%, white 100%);
+
+            &:hover {
+                background: linear-gradient(to bottom, #fffadc 0%, #fffadc 50%, #fff1a1 51%, white 100%);
+            }
+        }
+        .active { background: linear-gradient(to bottom, #fffadc 0%, #fffadc 50%, #fff1a1 51%, white 100%); }
+
+        main {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow-y: auto;
+        }
+
+        .writepost {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+
+            & .user {
+                width: 70px;
+                height: 70px;
+                background: white;
+                display: flex; justify-content: center; align-items: center;
+                & img { width: 50px; }
+            }
+
+            & .writepostblock {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: self-start;
+                gap: 5px;
+
+                & textarea { min-height: 70px; max-height: 100px; }
+            }
+        }
+
+        .post {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            background: #E6ECF7;
+            border: 1.25px solid #5C6F94; 
+            display: flex; flex-direction: column;
+            gap: 10px;
+
+            & .nameautor { font-size: 12px; color: rgb(58, 58, 161); }
+            & .posttext { color: black; }
+        }
+
+        .posts {
+            width: 100%;
+            box-sizing: border-box;
+            display: flex; flex-direction: column;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="writepost">
+            <div class="user"><img src="пользователь.png" alt="user"></div>
+            <div class="writepostblock">
+                <textarea placeholder="Мне нравится..." id="postarea"></textarea>
+                <button id="sayBtn">Сказать!</button>
+            </div>
+        </div>
+        <p>Посты!</p>
+        <div class="posts">
+            <!--<div class="post">
+                <p class="nameautor">%nameexample%</p>
+                <p class="posttext">%textofpost%</p>
+            </div>-->
+        </div>
+        
+    </main>
+    <script type="module">
+        import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+        const nameofuser = atob(atob("YUhSMGNITTZMeTlzYzJ0cmIyVjZhV2wyZVdKalpHZHlhM051WkM1emRYQmhZbUZ6WlM1amJ3PT0="));
+        const IDPost = atob("ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnBjM01pT2lKemRYQmhZbUZ6WlNJc0luSmxaaUk2SW14emEydHZaWHBwYVhaNVltTmtaM0pyYzI1a0lpd2ljbTlzWlNJNkltRnViMjRpTENKcFlYUWlPakUzTnpJd09UY3hPRGNzSW1WNGNDSTZNakE0TnpZM016RTROMzAuRVRmMVlTOXdhbVRscDNlRU5WN19BWTg4a2ZyUEw4U0dRVFdMSzc5T3c3QQ==");
+
+        const baseYIT = createClient(nameofuser, IDPost);
+
+        const phrases = {
+            1: "Мне нравится...",
+            2: "Хочу рассказать про...",
+            3: "Чувствую вайб...",
+            4: "Что думаете о...",
+            5: "Вы знали, что я...",
+            6: "Я хочу...",
+            7: "Я поделюсь о...",
+            8: "Что насчет...",
+            9: "Как вам идея о...",
+            10: "Сегодня я думаю о…"
+        };
+
+        function newphrase() {
+            const phrasesKeys = Object.keys(phrases);
+            const phrase = phrases[phrasesKeys[Math.floor(Math.random() * phrasesKeys.length)]];
+            document.getElementById("postarea").placeholder = phrase;
+        }
+
+        newphrase();
+
+        async function loadPosts() {
+            const { data, error } = await baseYIT
+                .from('yitposts')
+                .select('*')
+                .order('id', { ascending: false });
+
+            const postsContainer = document.querySelector('.posts');
+            postsContainer.innerHTML = '';
+
+            if (error) {
+                console.error('Ошибка загрузки постов:', error);
+                return;
+            }
+
+            data.forEach(post => {
+                const postDiv = document.createElement('div');
+                postDiv.classList.add('post');
+
+                const nameP = document.createElement('p');
+                nameP.classList.add('nameautor');
+                nameP.textContent = post.autor;
+
+                const postP = document.createElement('p');
+                postP.classList.add('posttext');
+                postP.textContent = post.post;
+
+                postDiv.appendChild(nameP);
+                postDiv.appendChild(postP);
+
+                postsContainer.appendChild(postDiv);
+            });
+        }
+
+        loadPosts();
+
+        async function addPost() {
+            const postText = document.getElementById('postarea').value.trim();
+            if (!postText) return alert("Пожалуйста, введите текст поста!");
+
+            const authorName = localStorage.getItem("nameyit") || "Аноним";
+
+            const { data, error } = await baseYIT
+                .from('yitposts')
+                .insert([{ post: postText, autor: authorName }]);
+
+            if (error) {
+                console.error('Ошибка публикации:', error);
+                alert("Не удалось опубликовать пост.");
+                return;
+            }
+
+            document.getElementById('postarea').value = '';
+            newphrase();
+            loadPosts();
+        }
+
+        document.getElementById('sayBtn').addEventListener('click', addPost);
+    </script>
+</body>
+</html>
