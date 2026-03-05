@@ -3,21 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЬЫТ</title>
     <style>
-        * {
-            padding: 0;
-            margin: 0;
-        }
-
-        button, a { cursor: pointer; }
-
         @font-face {
             font-family: 'xpfont';
             src: url('./xpfont.woff2') format('woff2');
             font-weight: normal;
             font-style: normal;
         }
-
+        * { padding: 0; margin: 0; }
         * {
             font-family: 'xpfont';
             scrollbar-width: none;
@@ -33,234 +27,121 @@
             *::-webkit-scrollbar {
                 display: none;
             }
-
-        :root {
-            --none: #000000;
-            --black: #000000;
-            --white: #ffffff;
-            --whiteblur: #3d549e40;
-            --whitefifty: rgba(255, 255, 255, 0.2);
-            --whiteseventy: rgba(255, 255, 255, 0.8);
-            --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            --maxbord: 20px;
-            --okbord: 15px;
-            --minbord: 7.5px;
-            --button-of-panel: rgba(255, 255, 255, 0.9);
-            --blackest-gad: rgb(36, 36, 36);
-            --gdone: #C6A0FF; --gdtwo: #fff4a0; --gdthree: #a0ffb8;
-            --other-white: #EFF4F9;
-            --invert: none;
-            --accent-color: #0078D4;
-            --grey: rgb(222, 222, 222);
-            --window-main: rgb(255, 255, 255);
-            --greyborder: #858585;
-        }
-
         body {
-            color: var(--black);
-            display: flex;
-            flex-direction: column;
-            font-family: var(--font);
             height: 100vh;
-        }
-
-        header {
-            top: 0;
-            position: fixed;
-            width: 100%;
-            height: 75px;
+            background: linear-gradient(to bottom, #CEDAF0, #FDFDFD);
             display: flex;
             flex-direction: column;
-            box-sizing: border-box;
-            background: 0;
-            border-bottom: 1px solid #CAC6B5;
-
-            .buttons {
-                height: 50px;
-                display: flex;
-            }
-
-            & button {
-                display: flex; align-items: center;
-                gap: 10px; background: 0; border: 1px solid #ffffff00;
-                border-radius: 5px; height: 100%; padding-left: 10px; padding-right: 10px;
-                & img { width: 25px; height: 25px; }
-
-                &:hover {
-                    border: 1px solid #CAC6B5;
-                    background: linear-gradient(to bottom, #F8F5E3, #EBE8D6);
-                }
-            }
-
-            & .secondheader {
-                width: var(100% - 10px);
-                margin: 5px;
-                padding: 5px;
-                box-sizing: border-box;
-                background: #ACA899;
-                color: white
-            }
-        }
-
-        .main {
-            background: white;
-            height: calc(100vh - 75px);
-            width: 100%;
-            overflow-y: hidden;
-            position: fixed;
-            bottom: 0;
-            display: flex;
             justify-content: space-between;
-        }
-
-        .mainmain {
-            background: var(--window-main);
-            width: 100%;
-            height: 100%;
-            display: none;
-            flex-direction: column;
-            justify-content: left;
+            align-items: center;
             box-sizing: border-box;
+            padding: 15px;
+        }
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            & img { height: 20px; }
+        }
+        span {
+            background: white;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px;
+            color: #244079;
+            & img { height: 15px; }
+        }
+        .reg {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            & img { width: 100px; }
 
-            & .mainheader {
+            & .block {
+                width: 250px;
                 display: flex;
                 flex-direction: column;
-                & span { font-weight: 600; height: 32px; font-size: 35px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; align-items: center; }
-                & .fr { background: white; color: black; }
-                & .sc { background: #000000; color: #0084ea; box-sizing: border-box; padding-left: 50px; }
-            }
-        }
-
-        hr { border: 1px solid var(--grey); }
-
-        .headbt button {
-            padding: 4px 8px;
-            border-radius: 5px;
-            background: var(--window-main);
-            color: var(--black);
-            border: 0;
-        }
-
-        .mainmain textarea {
-            font-size: 15px;
-        }
-
-        .chats {
-            width: 250px;
-            background: white;
-            box-sizing: border-box;
-            height: 100%;
-            padding: 5px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            border-right: 10px solid #ECE9D8;
-
-            & .emailhead {
-                background: #ECE9D8;
-                border: 1px solid #ACA899;
-                box-sizing: border-box;
-                padding: 5px;
-            }
-            & .email {
-                display: flex;
                 gap: 5px;
-                box-sizing: border-box;
-                padding: 5px;
-                & span { color: #969696; }
-
-                &:hover { background: #ECE9D8; }
+                & input { width: 100%; height: 25px; background: #E6ECF7; border: 1.25px solid #5C6F94; border-radius: 0; box-sizing: border-box; padding-left: 5px; padding-right: 5px; }
+            }
+            & .flexbutton {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                gap: 0;
+                & button {
+                    padding: 0;
+                    flex: 1;
+                    height: 25px;
+                    border: 1.25px solid #5C6F94;
+                    border-radius: 0; box-sizing: border-box;
+                    display: flex; justify-content: center; align-items: center;
+                    background: linear-gradient(to bottom, white 0%, white 50%, #D9E2F3 51%, white 100%);
+                }
+                .active { background: linear-gradient(to bottom, #fffadc 0%, #fffadc 50%, #fff1a1 51%, white 100%); }
             }
         }
-        .textofmail {
-            flex: 1;
-            resize: none;
-            border: 1px solid #ACA899;
-            box-sizing: border-box;
-            padding: 10px;
+
+        button {
+            padding-left: 15px;
+            padding-right: 15px;
+            height: 25px;
+            border: 1.25px solid #5C6F94;
+            border-radius: 0; box-sizing: border-box;
+            display: flex; justify-content: center; align-items: center;
+            background: linear-gradient(to bottom, white 0%, white 50%, #D9E2F3 51%, white 100%);
+        }
+        .active { background: linear-gradient(to bottom, #fffadc 0%, #fffadc 50%, #fff1a1 51%, white 100%); }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            33% { transform: rotate(-5deg); }
+            66% { transform: rotate(5deg); }
+            100% { transform: rotate(0deg); }
         }
     </style>
 </head>
-<body data-theme="white">
+<body>
     <header>
-        <div class="buttons">
-            <button onclick="openother('index.html')"><img src="emails.svg" alt="back"> Весь мусор</button>
-            <button><img src="send email.svg" alt="back"> Писанина</button>
-            <button onclick="openother('контакты.html')"><img src="adress.svg" alt="back"> вввшки</button>
-        </div>
-        <div class="secondheader">
-            Давайте еще напишем Инлук Алиэкспресс
-        </div>
+        <img src="ьыт.png" alt="ьыт">
     </header>
+    <div class="reg">
+        <img src="пользователь.png"alt="юзер">
 
-    <div class="main">
-        <div class="chats">
-            <div class="emailhead">
-                <p>Кто пишет</p>
-            </div>
-            <span onclick="openmail(1)" class="email">
-                <span>></span>
-                <p>Мокрософт</p>
-            </span>
-            <span onclick="openmail(2)" class="email">
-                <span>></span>
-                <p>Спамчик</p>
-            </span>
-            <span onclick="openmail(3)" class="email">
-                <span>></span>
-                <p>Офис</p>
-            </span>
-            <span onclick="openmail(4)" class="email">
-                <span>></span>
-                <p>ЬЫТ Нетворк</p>
-            </span>
+        <div class="block">
+            <p>кликуха в интернете</p>
+            <input id="name" maxlength="20" minlength="3" type="text" placeholder="Ваше имя">
         </div>
-        <div id="main" class="mainmain">
-            <div class="mainheader">
-                <span class="fr">ЬЫТ Инлук</span>
-                <span class="sc">Алиэкспресс</span>
+        <div class="block">
+            <p>кто вы?</p>
+            <div class="flexbutton">
+                <button id="interesting" class="active">Интересность :3</button>
+                <button onclick="nonchange()">Нормис</button>
             </div>
-            <textarea id="textofmail" class="textofmail">
-От: _____@ьыт.сом
-Кому: _____@ьыт.сом
-
-____________________
-            </textarea>
         </div>
-
+        <p style="color: red; display: none;" id="error">Не выделывайся, пиши!</p>
+        <button onclick="reg(document.getElementById('name').value)" style="margin-top: 20px;">Регаться</button>
     </div>
-
+    <span><img src="ьыт.png" alt="ьыт"> сервис общения</span>
     <script>
-        mail = document.getElementById("textofmail");
-
-        const texts = {
-            1: 'От: мокрософт@ьыт.сом\nКому: '+localStorage.getItem('nameyit')+'@ьыт.сом\n \nчел, хочу сказать тебе спасибо, за скачку этого дерьма. А еще спасибо за регистрацию в экосистеме ЬЫТ! Давай, бывай',
-            2: 'От: спамар@progressmail.сом\nКому: '+localStorage.getItem('nameyit')+'@ьыт.сом\n \nпривет! Я не в коем случае не отсылка на Progressbar95! И это спам! Хорошего дня!',
-            3: 'От: мокрософт_суппорт@ьыт.сом\nКому: '+localStorage.getItem('nameyit')+'@ьыт.сом\n \nхочу вам сообщить грустную новость, офис не поддерживается на ХЗ. Кого ебет чужое горе.',
-            4: 'От: ьыт.сом\nКому: '+localStorage.getItem('nameyit')+'@ьыт.сом\n \n'+localStorage.getItem('nameyit')+', добро пожаловать в ьыт! общайтесь, постите и просто веселитесь!'
-        };
-        mail.value = texts[1];
-        
-        function hideAll() {
-            document.getElementById('main').style.display = 'none';
+        function nonchange() {
+            document.getElementById("interesting").style.animation = "none";
+            setTimeout (() => {
+                document.getElementById("interesting").style.animation = "rotate 0.5s ease";
+            }, 100);
         };
 
-        function showMain() {
-            hideAll();
-            document.getElementById('main').style.display = 'flex';
+        function reg(name) {
+            if (!name) { document.getElementById("error").style.display = "block"; return };
+
+            localStorage.setItem("nameyit", name);
+            location.href = "main.html";
         };
 
-        function openother(file) {
-            location.href = file;
-        };
-
-        function openmail(mailnum) {
-            mail.value = texts[mailnum];
-        };
-
-        showMain();
-
-        if (!localStorage.getItem('nameyit')) location.href = "зарегайся.html"
+        if (localStorage.getItem("nameyit")) location.href = "main.html";
     </script>
 </body>
 </html>
