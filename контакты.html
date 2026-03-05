@@ -196,24 +196,8 @@
     <div class="main">
         <div class="chats">
             <div class="emailhead">
-                <p>Кто пишет</p>
+                <p>контакты</p>
             </div>
-            <span onclick="openmail(1)" class="email">
-                <span>></span>
-                <p>Мокрософт</p>
-            </span>
-            <span onclick="openmail(2)" class="email">
-                <span>></span>
-                <p>Спамчик</p>
-            </span>
-            <span onclick="openmail(3)" class="email">
-                <span>></span>
-                <p>Офис</p>
-            </span>
-            <span onclick="openmail(4)" class="email">
-                <span>></span>
-                <p>ЬЫТ Нетворк</p>
-            </span>
         </div>
         <div id="main" class="mainmain">
             <div class="mainheader">
@@ -221,25 +205,16 @@
                 <span class="sc">Алиэкспресс</span>
             </div>
             <textarea id="textofmail" class="textofmail">
-От: _____@ьыт.сом
-Кому: _____@ьыт.сом
-
-____________________
+КОНТАКТЫ:
+мокрософт@ьыт.сом
+ьыт.сом
+тактильность@жизнь.сом
             </textarea>
         </div>
 
     </div>
 
     <script>
-        mail = document.getElementById("textofmail");
-
-        const texts = {
-            1: 'От: мокрософт@ьыт.сом\nКому: '+localStorage.getItem('nameyit')+'@ьыт.сом\n \nчел, хочу сказать тебе спасибо, за скачку этого дерьма. А еще спасибо за регистрацию в экосистеме ЬЫТ! Давай, бывай',
-            2: 'От: спамар@progressmail.сом\nКому: '+localStorage.getItem('nameyit')+'@ьыт.сом\n \nпривет! Я не в коем случае не отсылка на Progressbar95! И это спам! Хорошего дня!',
-            3: 'От: мокрософт_суппорт@ьыт.сом\nКому: '+localStorage.getItem('nameyit')+'@ьыт.сом\n \nхочу вам сообщить грустную новость, офис не поддерживается на ХЗ. Кого ебет чужое горе.',
-            4: 'От: ьыт.сом\nКому: '+localStorage.getItem('nameyit')+'@ьыт.сом\n \n'+localStorage.getItem('nameyit')+', добро пожаловать в ьыт! общайтесь, постите и просто веселитесь!'
-        };
-        mail.value = texts[1];
         
         function hideAll() {
             document.getElementById('main').style.display = 'none';
@@ -254,13 +229,7 @@ ____________________
             location.href = file;
         };
 
-        function openmail(mailnum) {
-            mail.value = texts[mailnum];
-        };
-
         showMain();
-
-        if (!localStorage.getItem('nameyit')) location.href = "зарегайся.html"
     </script>
 </body>
 </html>
