@@ -225,13 +225,17 @@
                     return;
                 }
 
+                await new Promise(resolve => setTimeout(resolve, 2000));
+
                 document.getElementById('postarea').value = '';
                 newphrase();
                 loadPosts();
+
             } else {
-                alert("Общайтесь цензурно!")
+                alert("Общайтесь цензурно!");
             }
         }
+
 
         document.getElementById('sayBtn').addEventListener('click', addPost);
 
