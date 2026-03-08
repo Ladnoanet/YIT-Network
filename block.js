@@ -7,7 +7,7 @@ const VISUAL_MAP = {
 };
 
 const banlistuser = [
-    "Аноним"
+    "Аноним", "пидорас"
 ];
 
 const TRANSLIT_MAP = {
@@ -122,4 +122,5 @@ function hasProfanity(text) {
 
 function isblocked(user) {
     return banlistuser.includes(user);
+
 }
