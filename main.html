@@ -152,6 +152,8 @@
 
         const baseYIT = createClient(nameofuser, IDPost);
 
+        let isSending = false;
+
         const phrases = {
             1: "Мне нравится...",
             2: "Хочу рассказать про...",
@@ -209,12 +211,21 @@
         loadPosts();
 
         async function addPost() {
+            if (isSending) return;
+
+            const btn = document.getElementById('sayBtn');
             const postText = document.getElementById('postarea').value.trim();
+
             if (!postText) return alert("Пожалуйста, введите текст поста!");
 
             const authorName = localStorage.getItem("nameyit") || "Аноним";
 
             if (hasProfanity(postText) == false) {
+
+                isSending = true;
+                btn.textContent = "Говорю...";
+                btn.disabled = true;
+
                 const { data, error } = await baseYIT
                 .from('yitposts')
                 .insert([{ post: postText, autor: authorName }]);
@@ -222,14 +233,20 @@
                 if (error) {
                     console.error('Ошибка публикации:', error);
                     alert("Не удалось опубликовать пост.");
+
+                    isSending = false;
+                    btn.textContent = "Сказать!";
+                    btn.disabled = false;
                     return;
                 }
 
-                await new Promise(resolve => setTimeout(resolve, 2000));
-
                 document.getElementById('postarea').value = '';
                 newphrase();
-                loadPosts();
+                await loadPosts();
+
+                isSending = false;
+                btn.textContent = "Сказать!";
+                btn.disabled = false;
 
             } else {
                 alert("Общайтесь цензурно!");
@@ -242,10 +259,9 @@
         if (localStorage.getItem("nameyit")) {
             if (isblocked(localStorage.getItem("nameyit"))) { 
                 location.href = "blocked.html"; 
-            } else { 
-                console.log(isblocked(localStorage.getItem("nameyit"))) 
             }
         } else { location.href = "blocked.html"; }
+        
     </script>
 </body>
 </html>
