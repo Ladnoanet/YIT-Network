@@ -161,7 +161,8 @@ function isblocked(user) {
     return banlistuser.includes(user);
 }
 function isblockedid(idd) {
-    return ids.includes(String(idd));
+    const idStr = String(idd).trim();
+    return ids.some(id => String(id).trim() === idStr);
 }
 
 if (!localStorage.getItem("YIT-id")) {
