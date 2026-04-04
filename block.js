@@ -7,7 +7,9 @@ const VISUAL_MAP = {
 };
 
 const banlistuser = [
-    "Аноним", "пидорас"
+    "Аноним", "пидорас",
+    "БОСС ДКРАТА", "ладно анет?",
+    "   ", "", "sdfsdf", ""
 ];
 
 const TRANSLIT_MAP = {
