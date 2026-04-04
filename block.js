@@ -9,10 +9,11 @@ const VISUAL_MAP = {
 const banlistuser = [
     "Аноним", "пидорас",
     "БОСС ДКРАТА",
-    "   ", "", "sdfsdf"
+    "   ", "", "sdfsdf",
+    "Ваше имя", "Ваше име"
 ];
 const ids = [
-    "65746", "45676"
+    "65746", "45676", "88213"
 ]
 
 const TRANSLIT_MAP = {
