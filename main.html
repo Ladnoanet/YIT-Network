@@ -257,7 +257,9 @@
         document.getElementById('sayBtn').addEventListener('click', addPost);
 
         if (localStorage.getItem("nameyit")) {
-            if (isblocked(localStorage.getItem("nameyit")) || isblockedid(localStorage.getItem("YIT-id"))) {
+            if (isblocked(localStorage.getItem("nameyit"))) {
+                location.href = "blockedB.html";
+            } else if (isblockedid(localStorage.getItem("YIT-id"))) {
                 location.href = "blockedB.html";
             }
         } else { location.href = "blockedB.html"; }
