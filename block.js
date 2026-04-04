@@ -12,7 +12,7 @@ const banlistuser = [
     "   ", "", "sdfsdf"
 ];
 const ids = [
-
+    "77915",
 ]
 
 const TRANSLIT_MAP = {
