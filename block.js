@@ -8,9 +8,12 @@ const VISUAL_MAP = {
 
 const banlistuser = [
     "Аноним", "пидорас",
-    "БОСС ДКРАТА", "ладно анет?",
-    "   ", "", "sdfsdf", ""
+    "БОСС ДКРАТА",
+    "   ", "", "sdfsdf"
 ];
+const ids = [
+
+]
 
 const TRANSLIT_MAP = {
   'shch':'щ','sch':'щ','sh':'ш','ch':'ч','zh':'ж',
@@ -156,4 +159,11 @@ function hasProfanity(text) {
 
 function isblocked(user) {
     return banlistuser.includes(user);
+}
+function isblockedid(idd) {
+    return ids.includes(idd);
+}
+
+if (!localStorage.getItem("YIT-id")) {
+  localStorage.setItem("YIT-id", Math.floor(Math.random() * 90000) + 10000)
 }

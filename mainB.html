@@ -142,7 +142,7 @@
 <body>
 
     <div class="header">
-        <h1>Писанина</h1>
+        <h1>ЬЫТ</h1>
     </div>
 
     <main>
@@ -251,7 +251,7 @@
 
                 const { data, error } = await baseYIT
                     .from('yitposts')
-                    .insert([{ post: postText, autor: authorName }]);
+                    .insert([{ post: postText, autor: authorName, idautor: localStorage.getItem("YIT-id") }]);
 
                 if (error) {
                     console.error('Ошибка публикации:', error);
@@ -279,7 +279,7 @@
         document.getElementById('sayBtn').addEventListener('click', addPost);
 
         if (localStorage.getItem("nameyit")) {
-            if (isblocked(localStorage.getItem("nameyit"))) {
+            if (isblocked(localStorage.getItem("nameyit")) || isblockedid(localStorage.getItem("YIT-id"))) {
                 location.href = "blockedB.html";
             }
         } else { location.href = "blockedB.html"; }

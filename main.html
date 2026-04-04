@@ -228,7 +228,7 @@
 
                 const { data, error } = await baseYIT
                 .from('yitposts')
-                .insert([{ post: postText, autor: authorName }]);
+                .insert([{ post: postText, autor: authorName, idautor: localStorage.getItem("YIT-id") }]);
 
                 if (error) {
                     console.error('Ошибка публикации:', error);
@@ -257,10 +257,10 @@
         document.getElementById('sayBtn').addEventListener('click', addPost);
 
         if (localStorage.getItem("nameyit")) {
-            if (isblocked(localStorage.getItem("nameyit"))) { 
-                location.href = "blocked.html"; 
+            if (isblocked(localStorage.getItem("nameyit")) || isblockedid(localStorage.getItem("YIT-id"))) {
+                location.href = "blockedB.html";
             }
-        } else { location.href = "blocked.html"; }
+        } else { location.href = "blockedB.html"; }
         
     </script>
 </body>

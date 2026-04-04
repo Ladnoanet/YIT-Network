@@ -123,25 +123,74 @@
             </div>
         </div>
         <p style="color: red; display: none;" id="error">Не выделывайся, пиши!</p>
-        <button onclick="reg(document.getElementById('name').value)" style="margin-top: 20px;">Регаться</button>
+        <button onclick="reg()" style="margin-top: 20px;">Регаться</button>
     </div>
     <span><img src="ьыт.png" alt="ьыт"> сервис общения</span>
-    <script>
-        function nonchange() {
-            document.getElementById("interesting").style.animation = "none";
-            setTimeout (() => {
-                document.getElementById("interesting").style.animation = "rotate 0.5s ease";
-            }, 100);
-        };
+    <script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-        function reg(name) {
-            if (!name) { document.getElementById("error").style.display = "block"; return };
+    // Твои ключи (раскодированные)
+    const url = atob(atob("YUhSMGNITTZMeTlzYzJ0cmIyVjZhV2wyZVdKalpHZHlhM051WkM1emRYQmhZbUZ6WlM1amJ3PT0="));
+    const key = atob("ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnBjM01pT2lKemRYQmhZbUZ6WlNJc0luSmxaaUk2SW14emEydHZaWHBwYVhaNVltTmtaM0pyYzI1a0lpd2ljbTlzWlNJNkltRnViMjRpTENKcFlYUWlPakUzTnpJd09UY3hPRGNzSW1WNGNDSTZNakE0TnpZM016RTROMzAuRVRmMVlTOXdhbVRscDNlRU5WN19BWTg4a2ZyUEw4U0dRVFdMSzc5T3c3QQ==");
+    const supabase = createClient(url, key);
 
-            localStorage.setItem("nameyit", name);
+    // Делаем функции доступными для HTML-кнопок через window
+    window.nonchange = function() {
+        const btn = document.getElementById("interesting");
+        btn.style.animation = "none";
+        setTimeout(() => {
+            btn.style.animation = "rotate 0.5s ease";
+        }, 100);
+    };
+
+    window.reg = async function(name) {
+        const error = document.getElementById("error");
+        const trimmedName = name ? name.trim() : "";
+
+        // Скрываем ошибку перед новой проверкой
+        error.style.display = "none";
+
+        // 1. Проверка на пустоту и длину
+        if (trimmedName.length < 3) {
+            error.textContent = "Минимум 3 символа!";
+            error.style.display = "block";
+            return;
+        }
+
+        try {
+            // 2. Проверка на уникальность в базе
+            const { data, error: dbError } = await supabase
+                .from('yitposts')
+                .select('autor')
+                .eq('autor', trimmedName)
+                .limit(1);
+
+            if (dbError) throw dbError;
+
+            if (data && data.length > 0) {
+                error.textContent = "Эта кликуха уже занята!";
+                error.style.display = "block";
+                return;
+            }
+
+            // 3. Если всё ок — регистрируем
+            if (!localStorage.getItem("YIT-id")) {
+                localStorage.setItem("YIT-id", Math.floor(Math.random() * 90000) + 10000);
+            }
+            localStorage.setItem("nameyit", trimmedName);
             location.href = "main.html";
-        };
 
-        if (localStorage.getItem("nameyit")) location.href = "main.html";
-    </script>
+        } catch (err) {
+            error.textContent = "Ошибка связи с базой";
+            error.style.display = "block";
+            console.error(err);
+        }
+    };
+
+    // Авто-редирект
+    if (localStorage.getItem("nameyit")) {
+        location.href = "main.html";
+    }
+</script>
 </body>
 </html>
